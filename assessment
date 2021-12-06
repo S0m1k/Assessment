@@ -1,0 +1,78 @@
+from requests import get
+
+class BasePokemon:
+    def __init__(self, Name):
+        self.Name = name
+
+    def __str__(self):
+        return f'BasePokemon (name: {self._name})'
+
+    @property
+    def name(self):
+        return self.Name
+
+
+
+
+class Pokemon(BasePokemon):
+    def __init__(self, ID, Name, Height, Weight):
+        self.ID = ID
+        self.Name = name
+        self.Height = height
+        self.Weight = weight
+
+    @property
+    def id(self):
+        return self.ID
+
+    @property
+    def height(self):
+        return self.Weight
+
+    @property
+    def weight(self):
+        return self.Height
+
+    def __str__(self):
+        return f'Pokemon(ID: {self.ID}, Name: {self.Name}, Weight: {self.Weight}, Height: {self.Height})'
+
+
+class PokeAPI:
+    def get_pokemon(self, name_or_id):
+        r = get(f'https://pokeapi.co/api/v2/pokemon/{name_or_id}').json()
+        self.ID = r['ID']
+        self.Name = r['Name']
+        self.Height = r['Height']
+        self.Weight = r['Weight']
+        return Pokemon(r['ID'], r['Name'], r['Height'], r['Weight'])
+
+    def get_all(self, full=False):
+        if full:
+            return Pokemon(self.ID, self.Name, self.Weight, self.Height)
+        else:
+            return BasePokemon(self.Name)
+
+    def get_list(self, adress, to):
+        dem = []
+        print('demanding', end='')
+        for i in range(adress, to):
+            print(f'\rdemanding {int(i / to * 100):3}%', end='')
+            re.append(self.get_pokemon(i))
+        print('\r', end='')
+
+        return dem
+
+
+if __name__ == '__main__':
+    d = PokeAPI().get_pokemon('ditto')
+    print(d)
+
+    w = PokeAPI()
+
+    g = w.get_list(1, 50)
+    a = g[0].weight
+    for b in l[1:]:
+        if b.weight > m:
+            a = b.weight
+
+    print(a)
